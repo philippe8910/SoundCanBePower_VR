@@ -147,7 +147,7 @@ public class SoundPowerAction : MonoBehaviour
             {
                 float waitForSeconds = 1.5f - Mathf.Clamp((loudness - 0.5f) / 10f , -100 , 100);
 
-                StartCoroutine(startCountdown(Mathf.Clamp(waitForSeconds , 0.001f , 100)));
+                StartCoroutine(startCountdown(Mathf.Clamp(waitForSeconds , 0.5f , 100)));
                 Debug.Log("No SoundPowerAction");
                 Debug.Log("waitForSeconds: " + waitForSeconds);
             }
