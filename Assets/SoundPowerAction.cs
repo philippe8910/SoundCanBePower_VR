@@ -16,7 +16,7 @@ public class SoundPowerAction : MonoBehaviour
     public BoxCollider boxCollider;
 
 
-    public float sensitivity = 100f; // 灵敏度
+    public float loudness = 100f; // 灵敏度
     public float[] loudnessThreshold; 
 
     public SwordActor swordActor;
@@ -54,7 +54,7 @@ public class SoundPowerAction : MonoBehaviour
     void Update()
     {
         // 计算音量
-        float loudness = GetMicrophoneLoudness();
+        loudness = GetMicrophoneLoudness();
         
         // 判断是否在喊叫
         if(loudness > loudnessThreshold[0])
@@ -78,8 +78,9 @@ public class SoundPowerAction : MonoBehaviour
         else if(loudness < loudnessThreshold[0])
         {
             swordActor.enabled = true;
-            swordActor.shakeSpeed = loudness - 20;
-            swordActor.shakeAmount = loudness * 0.01f - 0.27f;
+            swordActor.shakeSpeed = Mathf.Clamp((loudness - 10) , 0 , 100);
+            swordActor.shakeAmount = Mathf.Clamp(loudness * 0.01f - 0.1f , 0 , 100);
+
         }
 
         swordActor.effectValue = loudness;
@@ -117,7 +118,7 @@ public class SoundPowerAction : MonoBehaviour
         
         float rms = Mathf.Sqrt(sum / samples.Length);
 
-        return rms * sensitivity;
+        return rms * 100;
 
     }
 
@@ -135,17 +136,32 @@ public class SoundPowerAction : MonoBehaviour
 
             Destroy(effectObject, 1f);
 
-            StartCoroutine(startCountdown());
-
-            IEnumerator startCountdown()
+            if(collision.transform.GetComponent<SoundPowerAction>())
             {
-                yield return new WaitForSeconds(1f);
+                var _swordAction = collision.transform.GetComponent<SoundPowerAction>();
+
+                float waitForSeconds = 1.5f - Mathf.Clamp((loudness - _swordAction.loudness) / 10f , -100 , 100);
+                StartCoroutine(startCountdown(Mathf.Clamp(waitForSeconds , 0.001f , 100)));
+            }
+            else
+            {
+                float waitForSeconds = 1.5f - Mathf.Clamp((loudness - 50) / 10f , -100 , 100);
+
+                StartCoroutine(startCountdown(Mathf.Clamp(waitForSeconds , 0.001f , 100)));
+                Debug.Log("No SoundPowerAction");
+                Debug.Log("waitForSeconds: " + waitForSeconds);
+            }
+
+            IEnumerator startCountdown(float waitForSeconds)
+            {
+                yield return new WaitForSeconds(waitForSeconds);
                 swordObject.SetActive(true);
                 swordShadowObject.SetActive(false);
                 boxCollider.enabled = true;
 
                 GameObject rebornEffectObject = Instantiate(rebornEffect, swordObject.transform.position, swordObject.transform.rotation);
                 Destroy(rebornEffectObject, 1f);
+                Destroy(cells, 3f);
             }
         }
     }

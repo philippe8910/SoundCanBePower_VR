@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Virtual_Reality_WorkShop_SoundCanBeYourDamge.sln"
+    "dotnet.defaultSolution": "SoundCanBePower_VR.sln"
 }
