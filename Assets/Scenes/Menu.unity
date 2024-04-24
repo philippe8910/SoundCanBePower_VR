@@ -15795,37 +15795,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1828546456}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1880900367
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1880900368}
-  m_Layer: 26
-  m_Name: SwordPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1880900368
+--- !u!4 &1880900368 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 449644238754157379, guid: dc06161b6d97feb419f45f03b62e14b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1899665777}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880900367}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.41, y: 1.007, z: -32.06}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1882449099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16044,15 +16019,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2326430, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
-    - target: {fileID: 7218954344482346698, guid: dc06161b6d97feb419f45f03b62e14b9,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -17585,7 +17551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2010220555
 Transform:
   m_ObjectHideFlags: 0
@@ -19126,6 +19092,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1033865442009208144, guid: c81fbfbe148b4b04f855a82dd482ee6e,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4622936903135299769, guid: c81fbfbe148b4b04f855a82dd482ee6e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19176,16 +19147,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4977871890964363371, guid: c81fbfbe148b4b04f855a82dd482ee6e,
-        type: 3}
-      propertyPath: m_Name
-      value: SwordShadow
-      objectReference: {fileID: 0}
-    - target: {fileID: 4977871890964363371, guid: c81fbfbe148b4b04f855a82dd482ee6e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6854619674304922251, guid: c81fbfbe148b4b04f855a82dd482ee6e,
         type: 3}
       propertyPath: m_Name
@@ -19196,11 +19157,6 @@ PrefabInstance:
       propertyPath: positionObject
       value: 
       objectReference: {fileID: 1880900368}
-    - target: {fileID: 8082790769238234841, guid: c81fbfbe148b4b04f855a82dd482ee6e,
-        type: 3}
-      propertyPath: m_Name
-      value: Sword
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19214,7 +19170,6 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 2122876432}
   - {fileID: 175888220892596602}
-  - {fileID: 1880900368}
   - {fileID: 1899665777}
   - {fileID: 2010220555}
   - {fileID: 1788360960}

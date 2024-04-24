@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class SwordAction : MonoBehaviour
 {
+    public PhotonView photonView { get; private set;}
+
     public GameObject objectToMove; // 要移动的物体
     public Transform positionObject; // 记录运动轨迹的位置物体
 
@@ -12,11 +15,15 @@ public class SwordAction : MonoBehaviour
 
     void Start()
     {
-
+        photonView = GetComponent<PhotonView>();
+        positionObject = GameObject.FindWithTag("SwordPoint").transform;
     }
 
     void Update()
     {
+        if(!photonView.IsMine)
+            return;
+
         positions.Add(positionObject.position);
         rotations.Add(positionObject.rotation);
 

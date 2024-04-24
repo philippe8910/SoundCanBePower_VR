@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class NetworkPlayerPrefabSpawner : MonoBehaviourPunCallbacks
 {
-    public GameObject spawnPlayer = null;
+    public GameObject spawnPlayer = null , spawnPlayerSword = null;
 
     public GameObject playerPos;
 
@@ -36,6 +36,7 @@ public class NetworkPlayerPrefabSpawner : MonoBehaviourPunCallbacks
     private void SpawnPlayer()
     {
         spawnPlayer = PhotonNetwork.Instantiate("NetworkPlayer", playerPos.transform.position, playerPos.transform.rotation);
+        spawnPlayerSword = PhotonNetwork.Instantiate("Orc_Sword", playerPos.transform.position, playerPos.transform.rotation);
 
         if (spawnPlayer == null)
         {
@@ -48,5 +49,6 @@ public class NetworkPlayerPrefabSpawner : MonoBehaviourPunCallbacks
         base.OnLeftLobby();
 
         PhotonNetwork.Destroy(spawnPlayer);
+        PhotonNetwork.Destroy(spawnPlayerSword);
     }
 }

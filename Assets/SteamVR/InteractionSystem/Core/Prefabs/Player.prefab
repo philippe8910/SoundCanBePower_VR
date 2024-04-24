@@ -246,6 +246,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 449644238754157379}
   - {fileID: 494198}
   - {fileID: 402768}
   - {fileID: 471722}
@@ -1160,7 +1161,7 @@ MonoBehaviour:
   handCollider: {fileID: 0}
   clearanceCheckMask:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 4294967295
   hand: {fileID: 0}
 --- !u!1 &160596
 GameObject:
@@ -4610,6 +4611,37 @@ Transform:
   m_Children:
   - {fileID: 2178226553891553667}
   m_Father: {fileID: 2599149992261839662}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5034553592799918529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 449644238754157379}
+  m_Layer: 26
+  m_Name: SwordPoint
+  m_TagString: SwordPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &449644238754157379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034553592799918529}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.25, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 447954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5198879600533028606
 GameObject:
