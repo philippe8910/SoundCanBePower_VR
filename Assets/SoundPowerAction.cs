@@ -48,17 +48,16 @@ public class SoundPowerAction : MonoBehaviour
         {
             loudness = GetMicrophoneLoudness();
         }
-
         
 
-        if (loudness > loudnessThreshold[0])
+        if (loudness > loudnessThreshold[0] && loudness < loudnessThreshold[1])
             HandleSound(10, 0.01f, 0.25f, false, swordMaterial);
-        else if (loudness > loudnessThreshold[1])
+        else if (loudness > loudnessThreshold[1] && loudness < loudnessThreshold[2])
             HandleSound(0, 0.02f, 0.2f, true, swordMaterial);
         else if (loudness > loudnessThreshold[2])
-            HandleSound(20, 0.03f, 0, true, fireMaterial);
+            HandleSound(5, 0.025f, 0, true, fireMaterial);
         else if (loudness < loudnessThreshold[0])
-            HandleSound(-10, 0.01f, 0.1f, false, swordMaterial);
+            
 
         swordActor.effectValue = loudness;
        // Debug.Log("Loudness: " + loudness);
