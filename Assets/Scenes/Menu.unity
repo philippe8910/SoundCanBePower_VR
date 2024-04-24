@@ -14459,6 +14459,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tent
       objectReference: {fileID: 0}
+    - target: {fileID: 4127458443936199739, guid: 8ac33b2347e9f3c44b5343e4d23173f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4127458443936622619, guid: 8ac33b2347e9f3c44b5343e4d23173f9,
         type: 3}
       propertyPath: m_RootOrder
@@ -17448,7 +17453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2005740087
 BoxCollider:
   m_ObjectHideFlags: 0

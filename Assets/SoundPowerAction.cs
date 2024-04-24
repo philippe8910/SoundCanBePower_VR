@@ -1,9 +1,12 @@
 using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 using Valve.VR;
 
 public class SoundPowerAction : MonoBehaviour
 {
+    public PhotonView photonView { get; private set; }
+
     public GameObject swordObject, swordShadowObject;
     public GameObject cellPrefab;
     public GameObject effect, fireEffect;
@@ -23,6 +26,7 @@ public class SoundPowerAction : MonoBehaviour
 
     private void Start()
     {
+        photonView = GetComponent<PhotonView>();
         boxCollider = GetComponent<BoxCollider>();
         meshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
         swordMaterial = meshRenderer.material;
@@ -40,7 +44,12 @@ public class SoundPowerAction : MonoBehaviour
 
     private void Update()
     {
-        loudness = GetMicrophoneLoudness();
+        if(photonView.IsMine)
+        {
+            loudness = GetMicrophoneLoudness();
+        }
+
+        
 
         if (loudness > loudnessThreshold[0])
             HandleSound(10, 0.01f, 0.25f, false, swordMaterial);
