@@ -5,10 +5,42 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
+using UnityEngine.Windows.Speech;
 
 public class NetworkSystem : MonoBehaviourPunCallbacks
 {
-    private void Start()
+    private KeywordRecognizer keywordRecognizer;
+    private string[] keywords = { "Link Start" , "Go" , "Link" , "Start" , "Rinku" , "Sutato" , "Rinku Sutato"};
+
+    public GameObject environment , video;
+
+    public VideoPlayer videoPlayer;
+
+    void Start()
+    {
+        keywordRecognizer = new KeywordRecognizer(keywords);
+        keywordRecognizer.OnPhraseRecognized += OnPhraseRecognized;
+        keywordRecognizer.Start();
+
+        videoPlayer.loopPointReached += delegate
+        {
+           StartRecording();
+        };
+    }
+
+    private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
+    {
+        string keyword = args.text;
+        Debug.Log("Detected keyword: " + keyword);
+        if (keyword == "Link Start")
+        {
+            environment.SetActive(false);
+            video.SetActive(true);
+        }
+    }
+
+    private void StartRecording()
     {
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("NetworkSystem");
@@ -47,3 +79,14 @@ public class NetworkSystem : MonoBehaviourPunCallbacks
         }   
     }
 }
+
+
+/*
+1.數位平權、包容
+2.
+
+1.語音辨識:https://learn.microsoft.com/zh-tw/windows/mixed-reality/develop/unity/voice-input-in-unity
+2.網路模組:https://doc.photonengine.com/zh-tw/pun/v2/getting-started/pun-intro
+3.SteamVR:https://valvesoftware.github.io/steamvr_unity_plugin/
+4.C#物驗導向程式設計:https://docs.microsoft.com/zh-tw/dotnet/csharp/programming-guide/concepts/object-oriented-programming
+*/

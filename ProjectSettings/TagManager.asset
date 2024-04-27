@@ -7,6 +7,9 @@ TagManager:
   - Bullet
   - Sword
   - SwordPoint
+  - LeftHand
+  - RightHand
+  - HMD
   layers:
   - Default
   - TransparentFX

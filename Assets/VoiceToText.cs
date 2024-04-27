@@ -5,7 +5,7 @@ using UnityEngine.Windows.Speech;
 public class VoiceToText : MonoBehaviour
 {
     private KeywordRecognizer keywordRecognizer;
-    private string[] keywords = { "Link Start" };
+    private string[] keywords = { "Link Start" , "Go" , "Link" , "Start"};
 
     void Start()
     {
@@ -26,7 +26,6 @@ public class VoiceToText : MonoBehaviour
 
     private void StartRecording()
     {
-        Debug.Log("开始录音...");
-        // 在这里开始录音的逻辑
+        
     }
 }

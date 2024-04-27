@@ -12,6 +12,8 @@ public class NetworkPlayerPrefabSpawner : MonoBehaviourPunCallbacks
 
     public GameObject playerPos;
 
+    public Transform player_1 , player_2;
+
     private void Start()
     {
         //todo this is not good to fix lag, 
@@ -31,6 +33,17 @@ public class NetworkPlayerPrefabSpawner : MonoBehaviourPunCallbacks
             SpawnPlayer();
             Debug.Log("NetworkPlayerPrefabSpawner");
         }
+
+        if(PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        {
+            GameObject.FindWithTag("Player").transform.position = player_1.position;
+        }
+        else if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            GameObject.FindWithTag("Player").transform.position = player_2.position;
+        }
+
+       // GameObject.Find("Player").transform.position = new Vector3(0, 0, 0);
     }
 
     private void SpawnPlayer()

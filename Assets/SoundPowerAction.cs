@@ -1,18 +1,22 @@
 using System.Collections;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using Valve.VR;
+using VolumetricLines;
 
 public class SoundPowerAction : MonoBehaviour
 {
     public PhotonView photonView { get; private set; }
+
+    public TMP_Text loudnessText;
 
     public GameObject swordObject, swordShadowObject;
     public GameObject cellPrefab;
     public GameObject effect, fireEffect;
     public GameObject rebornEffect;
 
-    public Material swordMaterial, fireMaterial;
+    public VolumetricLineBehavior volumetricLineBehavior;
     public BoxCollider boxCollider;
     public MeshRenderer meshRenderer;
 
@@ -24,12 +28,22 @@ public class SoundPowerAction : MonoBehaviour
     private string microphoneName;
     private AudioClip audioClip;
 
+    private AudioSource audioSource;
+
+    public static SoundPowerAction Instance;
+
+    private void Awake()
+    {
+        Instance = GetComponent<SoundPowerAction>();
+    }
+
     private void Start()
     {
         photonView = GetComponent<PhotonView>();
         boxCollider = GetComponent<BoxCollider>();
+       // audioSource = GetComponent<AudioSource>();
         meshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
-        swordMaterial = meshRenderer.material;
+        volumetricLineBehavior.LineColor = Color.blue;
 
         // 获取麦克风设备名称
         microphoneName = Microphone.devices.Length > 0 ? Microphone.devices[0] : "";
@@ -51,15 +65,18 @@ public class SoundPowerAction : MonoBehaviour
         
 
         if (loudness > loudnessThreshold[0] && loudness < loudnessThreshold[1])
-            HandleSound(10, 0.01f, 0.25f, false, swordMaterial);
+            HandleSound(10, 0.01f, 0.25f, false, Color.blue);
         else if (loudness > loudnessThreshold[1] && loudness < loudnessThreshold[2])
-            HandleSound(0, 0.02f, 0.2f, true, swordMaterial);
+            HandleSound(0, 0.02f, 0.2f, false, Color.red);
         else if (loudness > loudnessThreshold[2])
-            HandleSound(5, 0.025f, 0, true, fireMaterial);
+            HandleSound(5, 0.025f, 0, true, Color.green);
         else if (loudness < loudnessThreshold[0])
+            HandleSound(0, 0, 0, false, Color.white);
             
 
         swordActor.effectValue = loudness;
+        loudnessText.text = "Loudness: " + loudness;
+//        audioSource.clip = audioClip;
        // Debug.Log("Loudness: " + loudness);
     }
 
@@ -90,13 +107,12 @@ public class SoundPowerAction : MonoBehaviour
         return rms * 100;
     }
 
-    private void HandleSound(float shakeSpeedOffset, float shakeAmountFactor, float materialEmission, bool activateFireEffect, Material material)
+    private void HandleSound(float shakeSpeedOffset, float shakeAmountFactor, float materialEmission, bool activateFireEffect, Color material)
     {
         swordActor.enabled = true;
         swordActor.shakeSpeed = loudness + shakeSpeedOffset;
         swordActor.shakeAmount = loudness * shakeAmountFactor;
-        meshRenderer.material = material;
-
+        volumetricLineBehavior.LineColor = material;
         if (activateFireEffect)
             fireEffect.SetActive(true);
         else
