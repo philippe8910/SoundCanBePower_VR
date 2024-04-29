@@ -750,6 +750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c154a4fadab63f541965ef68aac85d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loudnessText: {fileID: 0}
   swordObject: {fileID: 5172607995514142599}
   swordShadowObject: {fileID: 4977871890964363371}
   cellPrefab: {fileID: 3607277655389250426, guid: 18e742cc27a39f746a0b97c4222858ce,
