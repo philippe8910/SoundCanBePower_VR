@@ -762,6 +762,8 @@ MonoBehaviour:
   volumetricLineBehavior: {fileID: 5172607995503836057}
   boxCollider: {fileID: 0}
   meshRenderer: {fileID: 0}
+  lightSabarAction: {fileID: 0}
+  trailRenderer: {fileID: 0}
   loudness: 100
   loudnessThreshold:
   - 10
@@ -801,6 +803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02fef76ec60e95449bf04452cd4cbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireballSpawnPoint: {fileID: 0}
+  fireballPrefab: {fileID: 0}
 --- !u!82 &8826391948436094350
 AudioSource:
   m_ObjectHideFlags: 0

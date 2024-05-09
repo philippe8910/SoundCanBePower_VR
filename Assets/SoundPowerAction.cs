@@ -19,6 +19,8 @@ public class SoundPowerAction : MonoBehaviour
     public VolumetricLineBehavior volumetricLineBehavior;
     public BoxCollider boxCollider;
     public MeshRenderer meshRenderer;
+    public LightSabarAction lightSabarAction;
+    public TrailRenderer trailRenderer;
 
     public float loudness = 100f; // 灵敏度
     public float[] loudnessThreshold;
@@ -113,6 +115,9 @@ public class SoundPowerAction : MonoBehaviour
         swordActor.shakeSpeed = loudness + shakeSpeedOffset;
         swordActor.shakeAmount = loudness * shakeAmountFactor;
         volumetricLineBehavior.LineColor = material;
+
+        trailRenderer.material.SetColor("_EmissionColor", material * materialEmission);
+
         if (activateFireEffect)
             fireEffect.SetActive(true);
         else
@@ -125,9 +130,11 @@ public class SoundPowerAction : MonoBehaviour
         {
             GameObject cells = Instantiate(cellPrefab, swordObject.transform.position, swordObject.transform.rotation);
             GameObject effectObject = Instantiate(effect, swordObject.transform.position, swordObject.transform.rotation);
+
             swordObject.SetActive(false);
             swordShadowObject.SetActive(true);
             boxCollider.enabled = false;
+
 
             Destroy(effectObject, 1f);
 
@@ -153,8 +160,10 @@ public class SoundPowerAction : MonoBehaviour
         swordShadowObject.SetActive(false);
         boxCollider.enabled = true;
 
-        GameObject rebornEffectObject = Instantiate(rebornEffect, swordObject.transform.position, swordObject.transform.rotation);
-        Destroy(rebornEffectObject, 1f);
+        lightSabarAction.StartEnable();
+
+        //GameObject rebornEffectObject = Instantiate(rebornEffect, swordObject.transform.position, swordObject.transform.rotation);
+        //Destroy(rebornEffectObject, 1f);
         Destroy(cells, 3f);
     }
 }

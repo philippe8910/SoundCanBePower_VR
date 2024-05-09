@@ -40,7 +40,8 @@ public class NetworkSystem : MonoBehaviourPunCallbacks
         }
     }
 
-    private void StartRecording()
+    [ContextMenu("StartRecording")]
+    public void StartRecording()
     {
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("NetworkSystem");
@@ -60,8 +61,8 @@ public class NetworkSystem : MonoBehaviourPunCallbacks
         //todo: create room
 
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 4;
-        PhotonNetwork.JoinOrCreateRoom("Room", roomOptions, TypedLobby.Default);
+        //roomOptions.MaxPlayers = 2;
+        PhotonNetwork.JoinRandomOrCreateRoom(null, 2);
 
         Debug.Log("OnJoinedLobby");        
     }
